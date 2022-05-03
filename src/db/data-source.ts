@@ -1,5 +1,7 @@
 import { DataSource } from "typeorm"
+import { Illness } from "../entities/Illness"
 import { User } from "../entities/User"
+import { UserMedicalHistory } from "../entities/UserMedicalHistory"
 
 export const AppDataSource = new DataSource({
     type: "mongodb",
@@ -7,7 +9,7 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     logging: false,
     useUnifiedTopology: true,
-    entities: [User],
+    entities: [User, UserMedicalHistory, Illness],
     migrations: [],
     subscribers: [],
 })

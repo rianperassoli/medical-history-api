@@ -4,6 +4,7 @@ import { ICreateUserDTO } from "../DTOs/ICreateUserDTO";
 
 import { User } from "../entities/User";
 import { AppDataSource } from "../db/data-source";
+import { UserMedicalHistory } from "../entities/UserMedicalHistory";
 
 class UserRepository {
   private repository: Repository<User>;
@@ -31,9 +32,7 @@ class UserRepository {
       phone
     })
 
-    const newUser = await this.repository.save(user);
-
-    return newUser
+    return await this.repository.save(user);
   }
 
   // async findByEmail(email: string): Promise<User> {
