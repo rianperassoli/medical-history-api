@@ -1,4 +1,4 @@
-import { Entity, ObjectIdColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, ObjectIdColumn, Column, CreateDateColumn, ObjectID, PrimaryColumn, Index } from "typeorm";
 import { UserMedicalHistory } from "./UserMedicalHistory";
 
 @Entity()
@@ -6,7 +6,7 @@ class User {
   @ObjectIdColumn()
   id: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()

@@ -1,16 +1,15 @@
-import { Repository } from "typeorm";
+import { ObjectID, Repository } from "typeorm";
 
 import { ICreateUserDTO } from "../DTOs/ICreateUserDTO";
 
 import { User } from "../entities/User";
 import { AppDataSource } from "../db/data-source";
-import { UserMedicalHistory } from "../entities/UserMedicalHistory";
 
 class UserRepository {
   private repository: Repository<User>;
 
   constructor() {
-    this.repository = AppDataSource.getRepository(User);
+    this.repository = AppDataSource.getMongoRepository(User);
   }
 
   async create({
@@ -35,13 +34,12 @@ class UserRepository {
     return await this.repository.save(user);
   }
 
-  // async findByEmail(email: string): Promise<User> {
-  //   return this.repository.findOn({ email });
-  // }
+  async findByEmail(email: string): Promise<User> {
+    const user = await this.repository.findOneBy({ email });
 
-  // async findById(id: string): Promise<User> {
-  //   return this.repository.findOne(id);
-  // }
+    return user
+  }
+
 }
 
 export { UserRepository };
