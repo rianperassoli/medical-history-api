@@ -31,13 +31,15 @@ class UserRepository {
       phone
     })
 
-    return await this.repository.save(user);
+    return this.repository.save(user);
   }
 
   async findByEmail(email: string): Promise<User> {
-    const user = await this.repository.findOneBy({ email });
+    return this.repository.findOneBy({ email });
+  }
 
-    return user
+  async findAll(): Promise<User[]> {
+    return this.repository.find();
   }
 
 }
