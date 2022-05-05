@@ -1,9 +1,10 @@
-import { Entity, ObjectIdColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, ObjectIdColumn, Column, CreateDateColumn, ObjectID } from "typeorm";
+import { UserMedicalHistory } from "./UserMedicalHistory";
 
 @Entity()
 class User {
   @ObjectIdColumn()
-  id: string;
+  id: ObjectID;
 
   @Column({ unique: true })
   email: string;
@@ -25,6 +26,8 @@ class User {
 
   @CreateDateColumn()
   created_at: Date;
+
+  medicalHistory: UserMedicalHistory
 }
 
 export { User }

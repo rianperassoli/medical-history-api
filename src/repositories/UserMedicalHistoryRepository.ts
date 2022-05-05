@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { ObjectID, Repository } from "typeorm";
 
 import { AppDataSource } from "../db/data-source";
 import { UserMedicalHistory } from "../entities/UserMedicalHistory";
@@ -31,13 +31,11 @@ class UserMedicalHistoryRepository {
     return this.repository.save(userMedicalHistory)
   }
 
-  // async findByEmail(email: string): Promise<User> {
-  //   return this.repository.findOn({ email });
-  // }
-
-  // async findById(id: string): Promise<User> {
-  //   return this.repository.findOne(id);
-  // }
+  async findByUser(user_id: ObjectID): Promise<UserMedicalHistory> {
+    console.log(String(user_id));
+    
+    return this.repository.findOneBy({ user_id: String(user_id) });
+  }
 }
 
 export { UserMedicalHistoryRepository };
