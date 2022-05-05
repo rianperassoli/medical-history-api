@@ -32,8 +32,6 @@ class UserMedicalHistoryRepository {
   }
 
   async findByUser(user_id: ObjectID): Promise<UserMedicalHistory> {
-    console.log(String(user_id));
-    
     return this.repository.findOneBy({ user_id: String(user_id) });
   }
 }
