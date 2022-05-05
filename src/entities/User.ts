@@ -1,5 +1,4 @@
-import { Entity, ObjectIdColumn, Column, CreateDateColumn, ObjectID, PrimaryColumn, Index } from "typeorm";
-import { UserMedicalHistory } from "./UserMedicalHistory";
+import { Entity, ObjectIdColumn, Column, CreateDateColumn } from "typeorm";
 
 @Entity()
 class User {
@@ -26,9 +25,6 @@ class User {
 
   @CreateDateColumn()
   created_at: Date;
-
-  @Column(type => UserMedicalHistory)
-  medicalHistory: UserMedicalHistory;
 }
 
 export { User }

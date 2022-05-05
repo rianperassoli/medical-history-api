@@ -1,15 +1,12 @@
-import { Entity, Column, CreateDateColumn, RelationId, ManyToOne, JoinColumn } from "typeorm";
-import { Illness } from "./Illness";
-import { User } from "./User";
+import { Entity, Column, CreateDateColumn, ObjectIdColumn, ObjectID } from "typeorm";
 
 @Entity()
 class UserMedicalHistory {
-  @ManyToOne(type => User, user => user)
-  @JoinColumn({ name: 'user_id' })
-  public user: User;
+  @ObjectIdColumn()
+  id: ObjectID;
 
   @Column()
-  public user_id: string;
+  user_id: string;
 
   @Column()
   height: number;
@@ -20,8 +17,8 @@ class UserMedicalHistory {
   @Column()
   pregnant: boolean;
 
-  @Column(type => Illness)
-  illnesses: Illness[];
+  @Column()
+  illnesses: string[];
 
   @CreateDateColumn()
   created_at: Date;
