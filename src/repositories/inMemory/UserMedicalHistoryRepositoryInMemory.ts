@@ -4,8 +4,8 @@ import { UserMedicalHistory } from "../../entities/UserMedicalHistory";
 import { ICreateUserMedicalHistoryDTO } from "../../DTOs/ICreateUserMedicalHistoryDTO";
 import { IUserMedicalHistoryRepository } from "../IUserMedicalHistoryRepository";
 
-class UserMedicalHistoryRepository implements IUserMedicalHistoryRepository {
-  private medicalHistories: UserMedicalHistory[]
+class UserMedicalHistoryRepositoryInMemory implements IUserMedicalHistoryRepository {
+  private medicalHistories: UserMedicalHistory[] = []
 
   async create({
     user_id,
@@ -35,4 +35,4 @@ class UserMedicalHistoryRepository implements IUserMedicalHistoryRepository {
   }
 }
 
-export { UserMedicalHistoryRepository };
+export { UserMedicalHistoryRepositoryInMemory };

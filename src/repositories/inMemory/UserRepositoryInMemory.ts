@@ -3,8 +3,8 @@ import { ICreateUserDTO } from "../../DTOs/ICreateUserDTO";
 import { User } from "../../entities/User";
 import { IUserRepository } from "../IUserRepository";
 
-class UserRepository implements IUserRepository {
-  private users: User[];
+class UserRepositoryInMemory implements IUserRepository {
+  private users: User[] = [];
 
   async create({
     email,
@@ -41,4 +41,4 @@ class UserRepository implements IUserRepository {
 
 }
 
-export { UserRepository };
+export { UserRepositoryInMemory };

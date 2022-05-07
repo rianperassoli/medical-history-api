@@ -16,7 +16,9 @@ class FindUserService {
   async execute(email: string): Promise<User> {
     const user = await this.userRepository.findByEmail(email)
 
-    user.medicalHistory = await this.userMedicalHistoryRepository.findByUser(String(user.id));
+    if (user) {
+      user.medicalHistory = await this.userMedicalHistoryRepository.findByUser(String(user.id));
+    }
 
     return user;
   }
