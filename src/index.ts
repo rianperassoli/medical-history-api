@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import "express-async-errors";
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import "dotenv/config"
 import { router } from './routes';
 import 'reflect-metadata';
 import { AppError } from './errors/AppError';
