@@ -1,9 +1,17 @@
+import { inject, injectable } from "tsyringe";
 import { ICreateUserDTO } from "../DTOs/ICreateUserDTO";
 import { User } from "../entities/User";
 import { AppError } from "../errors/AppError";
-import { UserRepository } from "../repositories/UserRepository";
+import { IUserRepository } from "../repositories/IUserRepository";
 
+@injectable()
 class CreateUserService {
+
+  constructor(
+    @inject("UserRepository")
+    private userRepository: IUserRepository
+  ) {}
+
   async execute({
     id,
     email,
@@ -13,15 +21,13 @@ class CreateUserService {
     birthdate,
     phone
   }: ICreateUserDTO): Promise<User> {
-    const userRepository = new UserRepository()
-
-    const emailExists = await userRepository.findByEmail(email)
+    const emailExists = await this.userRepository.findByEmail(email)
 
     if (emailExists) {
       throw new AppError('Email already exists')
     }
 
-    return userRepository.create({
+    return this.userRepository.create({
       id,
       email,
       first_name,

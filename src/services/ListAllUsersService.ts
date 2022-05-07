@@ -1,11 +1,17 @@
+import { inject, injectable } from "tsyringe";
 import { IResponseUserDTO } from "../DTOs/IResponseUserDTO";
-import { UserRepository } from "../repositories/UserRepository";
+import { IUserRepository } from "../repositories/IUserRepository";
 
+@injectable()
 class ListAllUsersService {
-  async execute(): Promise<IResponseUserDTO[]> {
-    const userRepository = new UserRepository()
 
-    const users = await userRepository.findAll();
+  constructor(
+    @inject("UserRepository")
+    private userRepository: IUserRepository
+  ) { }
+
+  async execute(): Promise<IResponseUserDTO[]> {
+    const users = await this.userRepository.findAll();
 
     const usersToReturn: IResponseUserDTO[] = users.map(user => {
       const fullname = `${user.first_name} ${user.last_name}`

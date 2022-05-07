@@ -1,10 +1,10 @@
 import express, { NextFunction, Request, Response } from 'express';
 import "express-async-errors";
+import 'reflect-metadata';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import "dotenv/config"
 import { router } from './routes';
-import 'reflect-metadata';
 import { AppError } from './errors/AppError';
 import { AppDataSource } from './db/data-source';
 
@@ -29,6 +29,8 @@ app.use(
     });
   }
 );
+
+import "./container";
 
 AppDataSource.initialize().then(() => {
   console.log("MongoDB is working")
