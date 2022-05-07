@@ -29,3 +29,13 @@ npm run start
 ```
 
 To make requests from API use: http://localhost:3000
+
+To run the unit test execute
+
+```bash
+yarn test
+
+or
+
+npm run test
+```
