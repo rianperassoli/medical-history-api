@@ -14,10 +14,16 @@ class UserMedicalHistoryRepositoryInMemory implements IUserMedicalHistoryReposit
     pregnant,
     illnesses
   }: ICreateUserMedicalHistoryDTO): Promise<UserMedicalHistory> {
-    const userMedicalHistory = new UserMedicalHistory()
+    let medicalHistory = await this.findByUser(user_id)
 
-    Object.assign(userMedicalHistory, {
-      id: uuid(),
+    if (!medicalHistory) {
+      medicalHistory = new UserMedicalHistory()
+      Object.assign(medicalHistory, {
+        id: uuid()
+      })
+    }
+
+    Object.assign(medicalHistory, {
       user_id,
       height,
       weight,
@@ -25,9 +31,9 @@ class UserMedicalHistoryRepositoryInMemory implements IUserMedicalHistoryReposit
       illnesses
     })
 
-    this.medicalHistories.push(userMedicalHistory)
+    this.medicalHistories.push(medicalHistory)
 
-    return userMedicalHistory
+    return medicalHistory
   }
 
   async findByUser(user_id: string): Promise<UserMedicalHistory> {

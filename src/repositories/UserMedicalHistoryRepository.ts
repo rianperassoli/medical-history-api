@@ -19,9 +19,13 @@ class UserMedicalHistoryRepository implements IUserMedicalHistoryRepository{
     pregnant,
     illnesses
   }: ICreateUserMedicalHistoryDTO): Promise<UserMedicalHistory> {
-    const userMedicalHistory = new UserMedicalHistory()
+    let medicalHistory = await this.findByUser(user_id)
 
-    Object.assign(userMedicalHistory, {
+    if (!medicalHistory) {
+      medicalHistory = new UserMedicalHistory()
+    }
+
+    Object.assign(medicalHistory, {
       user_id,
       height,
       weight,
@@ -29,11 +33,11 @@ class UserMedicalHistoryRepository implements IUserMedicalHistoryRepository{
       illnesses
     })
 
-    return this.repository.save(userMedicalHistory)
+    return this.repository.save(medicalHistory)
   }
 
   async findByUser(user_id: string): Promise<UserMedicalHistory> {
-    return this.repository.findOneBy({ user_id: user_id });
+    return this.repository.findOneBy({ user_id });
   }
 }
 

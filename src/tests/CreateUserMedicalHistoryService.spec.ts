@@ -43,6 +43,35 @@ describe("Create User Medical History", () => {
     expect(newMedicalHistory).toHaveProperty("id");
   })
 
+  it('should be able to replace an existent medical history', async () => {
+    const medicalHistory: ICreateUserMedicalHistoryDTO = {
+      user_id,
+      height: 20,
+      weight: 120,
+      pregnant: true,
+      illnesses: ['AIDS', 'Lepra']
+    }
+
+    let firstMedicalHistory = await service.execute(medicalHistory)
+
+    await service.execute({
+      user_id,
+      height: 190,
+      weight: 85,
+      pregnant: true,
+      illnesses: ['Carapato']
+    })
+
+    const updatedMedicalHistory = await medicalHistoryRepository.findByUser(user_id)
+
+    expect(firstMedicalHistory.id).toBe(updatedMedicalHistory.id);
+    expect(firstMedicalHistory.user_id).toBe(updatedMedicalHistory.user_id);
+    expect(updatedMedicalHistory.height).toBe(190)
+    expect(updatedMedicalHistory.weight).toBe(85)
+    expect(updatedMedicalHistory.illnesses.length).toBe(1)
+    expect(updatedMedicalHistory.illnesses[0]).toBe("Carapato")
+  })
+
   it('should not be able to create a new medical history with a non existent user_id', async () => {
     const medicalHistory: ICreateUserMedicalHistoryDTO = {
       user_id: '23123123123',
