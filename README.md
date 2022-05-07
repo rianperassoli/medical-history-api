@@ -1,7 +1,31 @@
-# Awesome Project Build with TypeORM
+This application was created for teaching purposes.
 
-Steps to run this project:
+This is a simple NodeJS API to store some information about patients and their medical conditions.
 
-1. Run `npm i` command
-2. Setup database settings inside `data-source.ts` file
-3. Run `npm start` command
+Built with: ExpressJS(https://expressjs.com/), typeORM(https://typeorm.io/) and MongoDB(https://www.mongodb.com/)
+
+To use this API run the app: https://github.com/rianperassoli/medical-history-app
+
+## Get started
+
+To run the api at localhost go to app folder and install the dependencies with...
+
+```bash
+yarn
+
+or
+
+npm install
+```
+
+...and start the api using
+
+```bash
+yarn start
+
+or
+
+npm run start
+```
+
+To make requests from API use: http://localhost:3000
