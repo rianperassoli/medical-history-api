@@ -4,7 +4,7 @@ import { app } from "../app";
 import { AppDataSource } from "../db/data-source";
 import { User } from "../entities/User";
 
-describe("Create Category Controller", () => {
+describe("Create User Controller", () => {
   beforeAll(async () => {
     await AppDataSource.initialize()
   });
@@ -30,6 +30,8 @@ describe("Create Category Controller", () => {
       });
 
     expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty('id')
+    expect(response.body).toHaveProperty('created_at')
   });
 
   it("should not be able to create a new user with existent email", async () => {

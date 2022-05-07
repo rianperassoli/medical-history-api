@@ -39,10 +39,15 @@ class UserRepository implements IUserRepository {
     return this.repository.findOneBy({ email });
   }
 
+  async findByID(id: string): Promise<User> {
+    const users = await this.findAll()
+
+    return users.find(user => String(user.id) === id)
+  }
+
   async findAll(): Promise<User[]> {
     return this.repository.find();
   }
-
 }
 
 export { UserRepository };
