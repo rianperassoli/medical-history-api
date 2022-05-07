@@ -10,7 +10,7 @@ class FindUserService {
 
     const user = await userRepository.findByEmail(email)
 
-    user.medicalHistory = await userMedicalHistoryRepository.findByUser(user.id);
+    user.medicalHistory = await userMedicalHistoryRepository.findByUser(String(user.id));
 
     return user;
   }

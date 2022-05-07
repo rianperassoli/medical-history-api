@@ -4,8 +4,9 @@ import { ICreateUserDTO } from "../DTOs/ICreateUserDTO";
 
 import { User } from "../entities/User";
 import { AppDataSource } from "../db/data-source";
+import { IUserRepository } from "./IUserRepository";
 
-class UserRepository {
+class UserRepository implements IUserRepository {
   private repository: Repository<User>;
 
   constructor() {

@@ -1,10 +1,11 @@
-import { ObjectID, Repository } from "typeorm";
+import { Repository } from "typeorm";
 
 import { AppDataSource } from "../db/data-source";
 import { UserMedicalHistory } from "../entities/UserMedicalHistory";
 import { ICreateUserMedicalHistoryDTO } from "../DTOs/ICreateUserMedicalHistoryDTO";
+import { IUserMedicalHistoryRepository } from "./IUserMedicalHistoryRepository";
 
-class UserMedicalHistoryRepository {
+class UserMedicalHistoryRepository implements IUserMedicalHistoryRepository{
   private repository: Repository<UserMedicalHistory>;
 
   constructor() {
@@ -31,8 +32,8 @@ class UserMedicalHistoryRepository {
     return this.repository.save(userMedicalHistory)
   }
 
-  async findByUser(user_id: ObjectID): Promise<UserMedicalHistory> {
-    return this.repository.findOneBy({ user_id: String(user_id) });
+  async findByUser(user_id: string): Promise<UserMedicalHistory> {
+    return this.repository.findOneBy({ user_id: user_id });
   }
 }
 
