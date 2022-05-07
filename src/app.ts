@@ -6,7 +6,6 @@ import cors from 'cors';
 import "dotenv/config"
 import { router } from './routes';
 import { AppError } from './errors/AppError';
-import { AppDataSource } from './db/data-source';
 
 const app = express()
 
@@ -31,9 +30,5 @@ app.use(
 );
 
 import "./container";
-
-AppDataSource.initialize().then(() => {
-  console.log("MongoDB is working")
-}).catch(error => console.log(error))
 
 export { app };

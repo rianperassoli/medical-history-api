@@ -9,7 +9,7 @@
     "dev": "ts-node-dev --respawn src/index.ts",
     "start": "ts-node src/index.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "test": "set NODE_ENV=test&&jest --runInBand"
+    "test": "set NODE_ENV=test&&jest --runInBand --detectOpenHandles"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -28,8 +28,10 @@
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.0",
     "@types/node": "^16.11.10",
+    "@types/supertest": "^2.0.12",
     "@types/uuid": "^8.3.4",
     "jest": "^28.1.0",
+    "supertest": "^6.2.3",
     "ts-jest": "^28.0.1",
     "ts-node": "10.7.0",
     "ts-node-dev": "^1.1.8"
