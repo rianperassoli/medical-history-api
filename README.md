@@ -1,4 +1,4 @@
-This application was created for teaching purposes.
+This application was created for learning purposes.
 
 This is a simple NodeJS API to store some information about patients and their medical conditions.
 
