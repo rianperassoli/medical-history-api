@@ -8,6 +8,9 @@ To use this API run the app: https://github.com/rianperassoli/medical-history-ap
 
 ## Get started
 
+Firstly duplicate the file .env.example and rename the copy for .env on the root project. 
+At .env change the MONGO_DB_URL for your MongoDB database or keep the same value for use the public database.
+
 To run the api at localhost go to app folder and install the dependencies with...
 
 ```bash
@@ -28,7 +31,7 @@ or
 npm run start
 ```
 
-To make requests from API use: http://localhost:3000
+To make requests from API use: http://localhost:3000 
 
 To run the unit tests execute
 
