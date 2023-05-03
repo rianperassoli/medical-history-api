@@ -5,8 +5,8 @@ import { CreateUserService } from "../services/CreateUserService";
 
 class TesteDialpadController {
   async handle(request: Request, response: Response): Promise<Response> {
-    console.log(request.body);
-
+    console.log({ request });
+    console.log({ body: request.body });
 
     return response.status(201).json(request.body);
   }
